@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function storeUserSelections() {
+            let givenName = document.getElementById("username");
+            let selector = document.getElementById("selectFontFamily");
+            let family = selector.options[selector.selectedIndex].value;
+            document.getElementById("greeting").style.fontFamily = family;
+            document.getElementById("greeting").innerHTML = "Hi, " + givenName.value;
+            localStorage.setItem("username",givenName.value)
+            localStorage.setItem("selectFontFamily",selector.value)
+            document.body.style.backgroundColor = document.getElementById("colorField").value; 
+        }
+        
+        function setStyle(){
+            let tmp= localStorage.getItem("username");
+            document.getElementById("greeting").value = tmp;
+        }
+
+        function clearUserSelections(){
+        document.getElementById("greeting").innerHTML = " " ;
+        localStorage.clear();
+        document.body.style.backgroundColor = "#FFFFFF";
+        }
+        
+        
+        </script>
+</head>
+
+<body onload="setStyle()">
+    <h1 id="greeting"></h1>
+    
+    <input type="text" id="username">
+    <input type="color" id="colorField">
+    <select id="selectFontFamily">
+        <option>Georgia</option>
+        <option>Palatino Linotype</option>
+        <option>Book Antiqua</option>
+        <option>Times New Roman</option>
+        <option>Arial</option>
+        <option>Helvetica</option>
+        <option>Arial Black</option>
+        <option>Impact</option>
+        <option>Lucida Sans Unicode</option>
+        <option>Tahoma</option>
+        <option>Verdana</option>
+        <option>Courier New</option>
+        <option>Lucida Console</option>
+    </select>
+    <br>
+    <input type="button" onclick="storeUserSelections()" value="Set your selections">
+    <br>
+    <input type="reset" value="clear user selections" onclick="clearUserSelections()">
+
+
+
+</body>
+</html>

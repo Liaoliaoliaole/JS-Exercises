@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Arrey</title>
+</head>
+<body>
+    <h2>Food Arrays</h2>
+
+    <p>The Array object is used to store your food:</p>
+
+    <p id="foodLength"></p>
+    <p id="foodValue"></p>
+    <p id="foodAdd"></p>
+
+
+    <script>
+       let f = ["Bannana", "Apple", "Orange", "Noodles", "Cabbage"];
+       document.getElementById("foodLength").innerHTML = f.length; 
+       
+       let text = "";
+       for(let i = 0; i < f.length; i++){
+           text += f[i] ;
+           console.log(f[i]);           
+       }
+       document.getElementById("foodValue").innerHTML = text; 
+
+       let add = "";
+       f.push("Mushroom");
+       document.getElementById("foodAdd").innerHTML = f;
+       
+    </script>
+</body>
+</html>

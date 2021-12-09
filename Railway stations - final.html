@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway stations</title>
+
+    <style>
+        table {
+            margin: 0 auto;
+            font-size: large;
+            border: 1px solid black;
+        }
+  
+        h1 {
+            text-align: center;
+            color: #006600;
+            font-size: xx-large;
+            font-family: 'Gill Sans', 
+                'Gill Sans MT', ' Calibri', 
+                'Trebuchet MS', 'sans-serif';
+        }
+  
+        td {
+            background-color: #E4F5D4;
+            border: 1px solid black;
+        }
+  
+        th,
+        td {
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+  
+        td {
+            font-weight: lighter;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Finnish railway stations</h1> 
+    <button id= "butt" onclick="checkBox()">Show only stations for passengers</button>
+    <table id='table'></table>
+
+
+    <script>
+        fetch ("http://rata.digitraffic.fi/api/v1/metadata/stations")
+              .then (responseData => { return responseData.json();})
+              .then (digitraffic => { 
+                  window.localStorage.setItem("digitraffic", JSON.stringify(digitraffic));                            
+                  console.log(JSON.parse(window.localStorage.getItem("digitraffic")));
+                });
+            
+        
+        let data = JSON.parse(window.localStorage.getItem("digitraffic"));
+        console.log(Array.isArray(data));
+        showData(data);
+     
+            function showData(list) {
+            let col = [];
+            for (let i=0; i< list.length; i++){
+                for (const x in list[i]) {
+                if(x == "stationShortCode" || x == "stationName" || x == "longitude" || x == "latitude"){
+                   col.push(x);
+                   }
+                }
+            break;
+            }
+            console.log(col);
+
+            let table = document.createElement("table");
+            let tr = table.insertRow(-1);
+            for (let i = 0; i < col.length; i++) {
+                 let theader = document.createElement("th");
+                 theader.innerHTML = col[i];
+                 tr.appendChild(theader);
+             }
+             for (let i = 0; i < list.length; i++) {
+                 trow = table.insertRow(-1);
+                 for (let j = 0; j < col.length; j++) {
+                     let cell = trow.insertCell(-1);
+                     cell.innerHTML = list[i][col[j]];
+                }
+            }
+            let el = document.getElementById("table");
+            el.innerHTML = "";
+            el.appendChild(table);  
+        }
+
+        console.log(data.filter(function(item) {
+        return item.passengerTraffic == true;
+        }));
+        let selectedData = data.filter(function(item) {
+        return item.passengerTraffic == true;})
+
+    function checkBox(){
+        showData(selectedData );
+    }
+
+
+    
+             
+    </script>
+
+    
+</body>
+</html>

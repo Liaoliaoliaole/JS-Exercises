@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+        text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form>
+    <label for="userNum">Print star-pattern</label>
+    <input type = "text" id="userNum">
+    <input type="button" value="submit" onclick="printStar()" >
+    </form>
+    <div id=userStar></div>
+
+    <script>               
+        function printStar(){ 
+        let uStr = Number(document.getElementById("userNum").value); 
+        let str = "";  
+        if (uStr == 0){                
+            alert ("Your input could not be 0!");
+            } else {          
+              for( let i = 1; i <= uStr; i++) { //give number of rows 
+                for(let j = 1; j <= i; j++){ //give number of stars in rows
+                str = str +"☆" ;
+                }
+                str = str + "<br>";
+            }
+            console.log(str);
+            document.getElementById("userStar").innerHTML = str;
+            } 
+        }
+
+    </script>
+</body>
+</html>

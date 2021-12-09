@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculateDogAge</title>
+</head>
+<body>
+    <h1>Calculate your puppy age</h1>
+    <input type="number" id="userNumber">
+    <button onclick="resolveAge()">Submit</button>
+
+    <p id="yourR"></p>
+
+<script>
+    function calculateDogAge(n){
+         return n * 7;
+    }
+
+    function resolveAge(){
+        let x = Number(document.getElementById("userNumber").value);
+        let result = calculateDogAge(x);
+        document.getElementById("yourR").innerHTML = "Your doggie is " + result + " years old in dog years!";
+    }
+
+</script>
+    
+</body>
+</html>

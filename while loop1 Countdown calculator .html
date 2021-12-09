@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Countdown calculator</h2>
+    <input id="num" type="text"> 
+    <button onclick="countDown()">Click Me</button>
+    <p id="cd"></p>
+
+    <script>
+        function countDown(){
+          let Levi="";
+          let text = Number(document.getElementById("num").value);
+          let i = 0;
+          while (i < text) {
+          Levi += "<br> The number is" + (text - i);
+          i++;
+        }
+        document.getElementById("cd").innerHTML = Levi;
+        }
+    
+
+    </script>    
+</body>
+</html>

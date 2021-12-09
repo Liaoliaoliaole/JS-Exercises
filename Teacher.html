@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher</title>
+<script>
+    let teacher = '[{"id":"asa","name":"Anna-Kaisa Saari","age":"N/A", "phone":"020-1234567"}, {"id":"tka","name":"Timo Kankaanpää","age":"N/A", "phone":"020-7654321"}, {"id":"smn","name":"Smail Menani","age":"N/A", "phone":"050-7654321"}, {"id":"sma","name":"Seppo Mäkinen","age":"N/A", "phone":"050-1234567"}, {"id":"kyl","name":"Kalevi Ylinen","age":"N/A", "phone":"050-234567"}, {"id":"ppr","name":"Pirjo Prosi","age":"N/A", "phone":"050-234567"}]';
+    let teacherJson = JSON.parse(teacher);
+
+    console.log(teacherJson);
+    //console.log(teacherJson.name);
+
+    let text = "";
+    for (i=0; i< teacherJson.length ; i++){
+        for (const x in teacherJson[i]) {
+        if(x== "name"){
+            text += x + ", "+ teacherJson[i][x]+" ";
+        }
+    }
+    }   
+    console.log(text);
+    
+    let firstText = "";
+    for (const x in teacherJson[0]) {
+        if(x== "name"){
+            firstText += x + ", "+ teacherJson[0][x]+" ";
+        };   
+    }
+    console.log(firstText);
+
+    teacherJson[0].address = "Street 1";
+    console.log(teacherJson[0].address);
+
+    teacherJson[0].courses = ["Javascript","C language","Python"];
+    console.log(teacherJson[0].courses);
+
+
+
+</script>
+
+</head>
+<body>
+    
+</body>
+</html>

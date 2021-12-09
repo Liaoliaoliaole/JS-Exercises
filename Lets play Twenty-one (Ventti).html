@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lets play Twenty-one</title>
+    <script>
+        let deck = [2,3,4,5,6,7,8,9,10,10,10,10,11,
+                    2,3,4,5,6,7,8,9,10,10,10,10,11,
+                    2,3,4,5,6,7,8,9,10,10,10,10,11,
+                    2,3,4,5,6,7,8,9,10,10,10,10,11];
+        let userNumbers = [];
+        let computerNumbers = [];
+        
+        function randomCard(deck){
+            let randomIndex = Math.floor(Math.random()*deck.length/4)+1;
+            return deck[randomIndex];
+        }
+        console.log(randomCard(deck));
+        
+        function start() {
+            document.getElementById("b1").style.visibility ="visible";
+            document.getElementById("b2").style.visibility ="visible";
+            userNumbers = [randomCard(deck),randomCard(deck)];
+            computerNumbers = [randomCard(deck),randomCard(deck)];
+            //localStorage.setItem("playerHandCards",userNumbers);
+            //localStorage.setItem("dealerHandCards",computerNumbers);
+            document.getElementById("playerHandCards").innerHTML = "player hand: " + userNumbers;
+            document.getElementById("playerHandValue").innerHTML = "player hand value: " + sumValue(userNumbers);
+            document.getElementById("dealerHandCards").innerHTML = "dealer hand: " + computerNumbers;
+            document.getElementById("dealerHandValue").innerHTML = "dealer hand value: " + sumValue(computerNumbers);
+            
+        }
+        
+        function sumValue(hand){
+            let sum = 0;
+            for(let i=0; i < hand.length; i++){
+                sum += hand[i];
+            }
+            return sum;
+        }
+        
+        /*start();
+        console.log("player hand: " + userNumbers);
+        console.log("player hand value: " + sumValue(userNumbers));
+        console.log("dealer hand: " + computerNumbers);
+        console.log("dealer hand value: " + sumValue(computerNumbers));*/
+        
+        function showWinner(){
+            if (sumValue(userNumbers) == sumValue(computerNumbers)){
+                document.getElementById("gameStatus").innerHTML = "Drawn match!";
+            } else if (sumValue(userNumbers) > sumValue(computerNumbers) && sumValue(userNumbers)< 22){
+                document.getElementById("gameStatus").innerHTML = "You win the match!";
+            } else if (sumValue(userNumbers) < sumValue(computerNumbers) && sumValue(computerNumbers)< 22){
+                document.getElementById("gameStatus").innerHTML = "You lost the match!";
+            } else if (sumValue(userNumbers) < sumValue(computerNumbers) && sumValue(computerNumbers)>= 22){
+                document.getElementById("gameStatus").innerHTML = "You win the match!";
+            } else 
+                document.getElementById("gameStatus").innerHTML = "You lost the match!";
+        }
+        
+        function hit(){
+            userNumbers.push(randomCard(deck));
+            //sumValue(userNumbers);
+            document.getElementById("playerHandCards").innerHTML = userNumbers;
+            document.getElementById("playerHandValue").innerHTML = sumValue(userNumbers);
+            if (sumValue(userNumbers) >= 21){
+                showWinner(); 
+            }  
+        }
+
+        function stay(){
+            computerNumbers.push(randomCard(deck));
+            document.getElementById("dealerHandCards").innerHTML = computerNumbers;
+            document.getElementById("dealerHandValue").innerHTML = sumValue(computerNumbers);
+            if(sumValue(computerNumbers) < sumValue(userNumbers)){
+                computerNumbers.push(randomCard(deck));
+            } else if (sumValue(computerNumbers) > sumValue(userNumbers) && sumValue(computerNumbers) < 22){
+                computerNumbers.push(randomCard(deck));
+            } else{
+                showWinner();
+            }
+        }
+        
+        </script>
+</head>
+<body>
+
+<h1>Let's play Twenty-one!</h1>
+<h2>Player cards:</h2>
+<div id="playerHandCards"></div>
+<h2>Player hand value:</h2>
+<div id="playerHandValue"></div>
+<h2>Dealer cards:</h2>
+<div id="dealerHandCards"></div>
+<h2>Dealer hand value:</h2>
+<div id="dealerHandValue"></div>
+<button onclick="start()">Start</button>
+<button id= "b1" style="visibility:hidden" onclick="hit()">Hit</button>
+<button id= "b2" style="visibility:hidden" onclick="stay()">Stay</button>
+<div id="gameStatus"></div>
+    
+</body>
+</html>

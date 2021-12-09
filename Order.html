@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+
+    <script>
+        let day = new Date();
+        let order = { id: 1,
+                      date: day.getFullYear()+'-'+(day.getMonth()+1)+'-'+day.getDate(),
+                      customer : "Tiina",
+                      product: ["banana", "orange","apple","egg"],
+                      getInfo : function(){
+                          return this.product.toString();
+                      }
+        }
+        console.log(order.id)
+        console.log(order.date)
+        console.log(order.customer)
+        console.log(order.getInfo())
+
+        function orderConstructor (id, date, customer, product){
+            this.id = id;
+            this.date = date;
+            this.customer = customer;
+            this.product = product;
+            this.getInfo = function(){
+                          return this.product.toString();
+                      };
+        }
+
+        const customer1 = new orderConstructor("1", "2021-11-1","Tiina",["banana", "orange","apple","egg"]);
+        const customer2 = new orderConstructor("2", "2021-11-2","Anna",["orange","apple","egg"]);
+
+        console.log(customer1.id);
+        console.log(customer1.date);
+        console.log(customer1.customer);
+        console.log(customer1.getInfo());
+
+        console.log(customer2.id);
+        console.log(customer2.date);
+        console.log(customer2.customer);
+        console.log(customer2.getInfo());
+
+        console.log(JSON.stringify(order));
+        let tmp = JSON.stringify(order);
+        console.log(JSON.parse(tmp));
+
+        console.log(order.id)
+        console.log(order.date)
+        console.log(order.customer)
+        console.log(order.getInfo())
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

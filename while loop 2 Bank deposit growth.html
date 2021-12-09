@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h2>Bank deposit growth</h2>
+    
+        <label for="iniDep">Inital deposit (€):</label><br>
+        <input type="text" id="iniDep" name="iniDep"><br>
+        <label for="int">Annual interest rate (%):</label><br>
+        <input type="text" id="int" name="int"><br>
+        <label for="depYear">Deposit time in years:</label><br>
+        <input type="text" id="depYear" name="depYear"><br>  
+        <button onclick="calculateDeposit()">Calculate Deposit</button>     
+     
+      <br>
+      <p id="demo"></p>
+    
+      <script>
+        function calculateDeposit(){
+            let s = Number(document.getElementById("iniDep").value);
+            console.log(s);
+            let p = Number(document.getElementById("int").value);
+            console.log(p);
+            let n = Number(document.getElementById("depYear").value);
+            console.log(n);   
+            let table = " ";
+
+            for (var i=1; i <= n; i++){
+                var cal =(s*Math.pow(1+p/100,i)).toFixed(2);
+                console.log(cal);
+                table += "<tr>" +
+                    "<th> Year </th>" +
+                    "<th> Deposit(€) </th>" + "</tr>" + 
+                    "<tr>" + "<td>" + i + "</td>" 
+                    + "<td> " + cal + "</td>" + 
+                    "</tr>"
+            }
+
+        document.getElementById("demo").innerHTML = "<table>" + table + "</table>";       
+    }
+      </script>    
+    
+</body>
+</html>

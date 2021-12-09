@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New deposit calculator</title>
+    <style>
+        h2 {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: rgb(255, 145, 0);
+        }
+        table, th, td {
+          border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>New deposit calculator</h1>
+    
+        <label for="iniDep">Inital deposit (€):</label><br>
+        <input type="text" id="iniDep" name="iniDep"><br>        
+        <label for="depYear">Number of years:</label><br>
+        <input type="text" id="depYear" name="depYear"><br>  
+        <button onclick="calculateDeposit()">Calculate Deposit</button>    
+     
+      <br>
+      <h2>Bank deposite growth comparition</h2>
+      <p id="res"></p>
+
+      <script>
+        function calculateDeposit(){
+            let s = Number(document.getElementById("iniDep").value);
+            console.log(s);
+            let n = Number(document.getElementById("depYear").value);
+            console.log(n);   
+            let table = " ";
+
+                                  
+            for (let i=1; i <= n; i++){
+                let cal2 =(s*(1+2/100)).toFixed(2);
+                let cal4 = (s*(1+4/100)).toFixed(2);
+                let cal6 = (s*(1+6/100)).toFixed(2);
+                table += 
+                    "<tr>" +
+                    "<td>" + i + "</td>" + 
+                    "<td> " + cal2 + "</td>" +
+                    "<td> " + cal4 + "</td>" +
+                    "<td> " + cal6 + "</td>" +
+                    "</tr>"
+            }
+
+        document.getElementById("res").innerHTML = "<table>" + "<tr>" +
+                    "<th> Year </th>" +
+                    "<th> Deposit(€) interest 2% </th>" + 
+                    "<th> Deposit(€) interest 4% </th>" + 
+                    "<th> Deposit(€) interest 6% </th>" +                    
+                    "</tr>" +  table + "</table>";       
+    }
+      </script>   
+    
+    
+</body>
+</html>

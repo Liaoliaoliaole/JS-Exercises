@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Divide with two</h1>
+    <p>Input your number, and ans shows a number which is your number divided by two.</p>
+    <input type="number" id="userNumber">
+    <button onclick="callDivide()">Submit</button>
+
+    <p id="yourR"></p>
+
+    <script>
+    
+    function divideWithTwo(n){
+        return n/2;
+    }
+    console.log(divideWithTwo(10));
+    console.log(divideWithTwo(20));
+    
+    
+    function callDivide(){
+        let x = Number(document.getElementById("userNumber").value);
+        let result = divideWithTwo(x);//这一个function只是用来叫出另一个function的算法；
+        //return result;只有在需要的时候才return一个值用于其他地方；
+        document.getElementById("yourR").innerHTML = result;
+    }
+    
+
+
+    </script>
+</body>
+</html>

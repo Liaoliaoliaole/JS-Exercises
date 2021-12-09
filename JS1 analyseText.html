@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>Enter your text:</h1>
+<p>Input your text and click blank out to analyse your text.</p>
+<form>
+<input type="text" id="userText">
+<p id="analysedText"></p>
+<button type="reset" value="Reset" onclick="clearFields()">Click here to remove the result</button>
+</form>
+
+
+<script>
+    var x = document.getElementById("userText");
+    console.log(typeof(x));
+    let y = toString(document.getElementById("userText"));
+    console.log(typeof(y));
+    console.log(y.length);
+    x.addEventListener("focusout", analyseText);
+    
+    function analyseText() {      
+        document.getElementById("analysedText").innerHTML = "Your text in upper case: " + x.value.toUpperCase()+ " " + "Your text in lower case: " + x.value.toLowerCase() + " " + "Your text's length is: " + y.length;
+    }
+
+    function clearFields(){
+        document.getElementById("userText").style.backgroundColor = "red";
+        document.getElementById("analysedText").innerHTML = " ";
+    }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phonebook</title>
+</head>
+<body>
+    <h1>Phonebook</h1>
+    
+        <label for="firstName">Input Name to serch the phone number:</label><br>
+        <input type="text" id="userName" name="firstName"><br>         
+        <button onclick="findNumber()">Submit</button>    
+     
+      <br>
+      <p id="result"></p>
+
+    <script>
+     
+        
+        function findNumber() {
+            let n = ["Liisa","Pekka","Mikko","Timo","Anna","Leena","Marja","Juha"];
+            let p = ["010-12345","020-12345","030-12345","040-12345","050-12345","060-12345","070-12345","080-12345"]
+            let nam = document.getElementById("userName").value;
+            //console.log(nam);
+            //console.log(typeof(nam));
+            let res = "";
+            let pho = "";
+            
+
+            for(let i = 0; i < n.length; i++){   
+                res = n[i].toString(); 
+                pho = p[i].toString(); 
+                //console.log(res);
+                //console.log(typeof(res));  
+            
+            if(res == nam) {
+                document.getElementById("result").innerHTML = res + " " + pho;
+                break;
+            } else {
+                document.getElementById("result").innerHTML = nam + " is not in the phonebook!";
+            
+            } 
+            //if(nam !== res){
+                //alert(nam + " is not in the phonebook!")
+            }
+        }
+    </script>
+    
+</body>
+</html>
